@@ -53,12 +53,16 @@ namespace SierpinskiTriangle.Code
         {
             while (_innerPoints.Count < int.MaxValue)
             {
-                var vert = _vertices[Random.Range(0, _vertices.Length)];
-                var point = _innerPoints[Random.Range(0, _innerPoints.Count)];
-                var nextPos = vert + 0.5f * (point - vert);
-                SpawnPoint(nextPos);
-                _innerPoints.Add(nextPos);
-                count = _innerPoints.Count;
+                var pointsToGen = Mathf.CeilToInt(Mathf.Sqrt(_innerPoints.Count));
+                for (int i = 0; i < pointsToGen; i++)
+                {
+                    var vert = _vertices[Random.Range(0, _vertices.Length)];
+                    var point = _innerPoints[Random.Range(0, _innerPoints.Count)];
+                    var nextPos = vert + 0.5f * (point - vert);
+                    SpawnPoint(nextPos);
+                    _innerPoints.Add(nextPos);
+                    count = _innerPoints.Count;
+                }
                 yield return null;
             }
         }
