@@ -8,6 +8,7 @@ namespace SierpinskiTriangle.Code
     {
         [SerializeField] private Transform pointPrefab;
         [SerializeField] private float radius = 5;
+        [SerializeField] private float scale = .05f;
         
         private Vector3[] _vertices;
         private List<Vector3> _innerPoints;
@@ -62,6 +63,7 @@ namespace SierpinskiTriangle.Code
         {
             var point = Instantiate(pointPrefab, transform);
             point.localPosition = pos;
+            point.localScale = scale * Vector3.one;
         }
     }
 }
