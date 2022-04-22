@@ -21,15 +21,17 @@ namespace SierpinskiTriangle.Code
 
         private void CreateVertices()
         {
-            _vertices = new Vector3[3];
-            var pos = Vector3.up * radius;
-            var rot = Quaternion.Euler(0, 0, 120);
-
-            for (int i = 0; i < 3; i++)
+            _vertices = new[]
             {
-                SpawnPoint(pos);
-                _vertices[i] = pos;
-                pos = rot * pos;
+                radius * new Vector3(Mathf.Sqrt(8f/9f), 0, -1f/3f),
+                radius * new Vector3(-Mathf.Sqrt(2f/9f), Mathf.Sqrt(2f/3f), -1f/3f),
+                radius * new Vector3(-Mathf.Sqrt(2f/9f), -Mathf.Sqrt(2f/3f), -1f/3f),
+                radius * new Vector3(0, 0, 1)
+            };
+
+            foreach (var vertex in _vertices)
+            {
+                SpawnPoint(vertex);
             }
         }
 
@@ -45,7 +47,7 @@ namespace SierpinskiTriangle.Code
 
         private IEnumerator GenerateInnerPoints()
         {
-            while (true)
+            while (_innerPoints.Count < int.MaxValue)
             {
                 var vert = _vertices[Random.Range(0, _vertices.Length)];
                 var point = _innerPoints[Random.Range(0, _innerPoints.Count)];
