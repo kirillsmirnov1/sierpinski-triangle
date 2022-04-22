@@ -9,7 +9,8 @@ namespace SierpinskiTriangle.Code
         [SerializeField] private Transform pointPrefab;
         [SerializeField] private float radius = 5;
         [SerializeField] private float scale = .05f;
-
+        [SerializeField] private bool generate = true;
+        
         [Header("Debug")]
         [SerializeField] private int count;
 
@@ -51,7 +52,7 @@ namespace SierpinskiTriangle.Code
 
         private IEnumerator GenerateInnerPoints()
         {
-            while (_innerPoints.Count < int.MaxValue)
+            while (_innerPoints.Count < int.MaxValue && generate)
             {
                 var pointsToGen = Mathf.CeilToInt(Mathf.Sqrt(_innerPoints.Count));
                 for (int i = 0; i < pointsToGen; i++)
