@@ -309,6 +309,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1618082546}
   - component: {fileID: 1618082547}
+  - component: {fileID: 1618082548}
   m_Layer: 0
   m_Name: Triangle
   m_TagString: Untagged
@@ -344,3 +345,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pointPrefab: {fileID: 2919986957889778116, guid: 6236f2e816bfadc41ba1b1f53ec6dd36, type: 3}
   radius: 5
+--- !u!114 &1618082548
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1618082545}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d653aa79ce69420fbcb176ee801fc7c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: {x: 0, y: 20, z: 0}
