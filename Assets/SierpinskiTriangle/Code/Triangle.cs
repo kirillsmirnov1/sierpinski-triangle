@@ -9,7 +9,10 @@ namespace SierpinskiTriangle.Code
         [SerializeField] private Transform pointPrefab;
         [SerializeField] private float radius = 5;
         [SerializeField] private float scale = .05f;
-        
+
+        [Header("Debug")]
+        [SerializeField] private int count;
+
         private Vector3[] _vertices;
         private List<Vector3> _innerPoints;
 
@@ -55,6 +58,7 @@ namespace SierpinskiTriangle.Code
                 var nextPos = vert + 0.5f * (point - vert);
                 SpawnPoint(nextPos);
                 _innerPoints.Add(nextPos);
+                count = _innerPoints.Count;
                 yield return null;
             }
         }
