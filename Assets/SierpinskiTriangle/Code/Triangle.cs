@@ -27,7 +27,8 @@ namespace SierpinskiTriangle.Code
 
             for (int i = 0; i < 3; i++)
             {
-                _vertices[i] = Instantiate(pointPrefab, pos, Quaternion.identity, transform).position;
+                SpawnPoint(pos);
+                _vertices[i] = pos;
                 pos = rot * pos;
             }
         }
@@ -38,7 +39,8 @@ namespace SierpinskiTriangle.Code
             var ab = _vertices[1] - _vertices[0];
             var ac = _vertices[2] - _vertices[0];
             var d = _vertices[0] + ab * Random.Range(0f, 0.5f) + ac * Random.Range(0f, 0.5f);
-            _innerPoints.Add(Instantiate(pointPrefab, d, Quaternion.identity, transform).position);
+            SpawnPoint(d);
+            _innerPoints.Add(d);
         }
 
         private IEnumerator GenerateInnerPoints()
@@ -48,9 +50,16 @@ namespace SierpinskiTriangle.Code
                 var vert = _vertices[Random.Range(0, _vertices.Length)];
                 var point = _innerPoints[Random.Range(0, _innerPoints.Count)];
                 var nextPos = vert + 0.5f * (point - vert);
-                _innerPoints.Add(Instantiate(pointPrefab, nextPos, Quaternion.identity, transform).position);
+                SpawnPoint(nextPos);
+                _innerPoints.Add(nextPos);
                 yield return null;
             }
+        }
+
+        private void SpawnPoint(Vector3 pos)
+        {
+            var point = Instantiate(pointPrefab, transform);
+            point.localPosition = pos;
         }
     }
 }
