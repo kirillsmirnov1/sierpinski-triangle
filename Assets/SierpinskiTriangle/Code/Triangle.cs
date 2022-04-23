@@ -10,6 +10,8 @@ namespace SierpinskiTriangle.Code
         [SerializeField] private float radius = 5;
         [SerializeField] private float scale = .05f;
         [SerializeField] private bool generate = true;
+        [SerializeField] private float pow = .5f;
+        [SerializeField] private int maxPointsPerStep = 10;
         
         [Header("Debug")]
         [SerializeField] private int count;
@@ -54,7 +56,7 @@ namespace SierpinskiTriangle.Code
         {
             while (_innerPoints.Count < int.MaxValue && generate)
             {
-                var pointsToGen = Mathf.CeilToInt(Mathf.Sqrt(_innerPoints.Count));
+                var pointsToGen = Mathf.Clamp(Mathf.CeilToInt(Mathf.Pow(_innerPoints.Count, pow)), 1, maxPointsPerStep);
                 for (int i = 0; i < pointsToGen; i++)
                 {
                     var vert = _vertices[Random.Range(0, _vertices.Length)];
